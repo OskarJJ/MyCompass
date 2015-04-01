@@ -1,6 +1,8 @@
 package com.example.oskar.mycompass;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Vibrator;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,7 +10,7 @@ import android.view.*;
 
 
 public class MainActivity extends ActionBarActivity {
-
+protected Vibrator vibe;
     public void goToCompass1(View view) {
         Intent intent = new Intent(this, CompassActivity.class);
         startActivity(intent);
@@ -17,10 +19,20 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent(this, Compass2Activity.class);
         startActivity(intent);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        vibe = (Vibrator) MainActivity.this.getSystemService(Context.VIBRATOR_SERVICE);
+
+    }
+
+
+
+    public void vibrateNow(View view) {
+            vibe.vibrate(60*10);// milliseconds (the duration of the vibration)
+
     }
 
 
