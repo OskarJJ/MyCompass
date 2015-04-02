@@ -7,10 +7,14 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.*;
+import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity {
 protected Vibrator vibe;
+    public int i = 0;
+    private TextView chatbox;
+
     public void goToCompass1(View view) {
         Intent intent = new Intent(this, CompassActivity.class);
         startActivity(intent);
@@ -19,20 +23,29 @@ protected Vibrator vibe;
         Intent intent = new Intent(this, Compass2Activity.class);
         startActivity(intent);
     }
+    public void aNow(View view) {
+        Intent intent = new Intent(this, AccelerateActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         vibe = (Vibrator) MainActivity.this.getSystemService(Context.VIBRATOR_SERVICE);
+        setUpViews();
+    }
 
+    private void setUpViews() {
+        chatbox = (TextView) findViewById(R.id.textView);
     }
 
 
 
     public void vibrateNow(View view) {
-            vibe.vibrate(60*10);// milliseconds (the duration of the vibration)
-
+        vibe.vibrate(60*10);// milliseconds (the duration of the vibration)
+        i = i + 1;
+        chatbox.setText(Integer.toString(i));
     }
 
 
